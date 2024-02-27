@@ -17,24 +17,35 @@ public_key_bytes = public_key.public_bytes(
 )
 
 # Encrypt data using the public key
-message = input("Enter the message to encrypt: ").encode()
-encrypted_data = public_key.encrypt(
-    message,
-    padding.OAEP(
-        mgf=padding.MGF1(algorithm=hashes.SHA256()),
-        algorithm=hashes.SHA256(),
-        label=None
+def encrypt_data(data, public_key):
+    encrypted_data = public_key.encrypt(
+        data.encode(),
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
     )
-)
-print("Encrypted:", encrypted_data.hex())
+    return encrypted_data
 
 # Decrypt data using the private key
-decrypted_data = private_key.decrypt(
-    encrypted_data,
-    padding.OAEP(
-        mgf=padding.MGF1(algorithm=hashes.SHA256()),
-        algorithm=hashes.SHA256(),
-        label=None
+def decrypt_data(encrypted_data, private_key):
+    decrypted_data = private_key.decrypt(
+        encrypted_data,
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
     )
-)
-print("Decrypted:", decrypted_data.decode())
+    return decrypted_data.decode()
+
+# Example usage
+data_to_encrypt = "Hello, World!"
+print("Original Data:", data_to_encrypt)
+
+encrypted_data = encrypt_data(data_to_encrypt, public_key)
+print("Encrypted:", encrypted_data.hex())
+
+decrypted_data = decrypt_data(encrypted_data, private_key)
+print("Decrypted:", decrypted_data)

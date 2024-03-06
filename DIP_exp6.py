@@ -63,7 +63,8 @@ def flip_image(input_path,output_path,flip_code):
 
 if __name__=="__main__":
     # Example usage
-    input_path="C:/Users//lagan//OneDrive//Desktop//2.jpg"
+    input_path=("C:/Users//lagan//OneDrive//Desktop//1"
+                ".jpg")
     output_path_cropped="C:/Users//lagan//OneDrive//Desktop//cropped_image.jpg"
     output_path_resized="C:/Users//lagan//OneDrive//Desktop//resized_image.jpg"
     output_path_scaled= "C:/Users//lagan//OneDrive//Desktop//scaled_image.jpg"

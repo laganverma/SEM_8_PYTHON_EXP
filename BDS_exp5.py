@@ -44,7 +44,7 @@ def decrypt_data(encrypted_data,private_key):
 
 
 # Example usage
-data_to_encrypt="Lagan Verma, 20BCS3515"
+data_to_encrypt="Sahil Thakur, 20BCS3588"
 print("Original Data:",data_to_encrypt)
 
 encrypted_data=encrypt_data(data_to_encrypt,public_key)

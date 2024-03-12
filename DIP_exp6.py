@@ -1,6 +1,5 @@
 import cv2
 
-
 def crop_image(input_path,output_path,x,y,width,height):
     try:
         # Read the input image

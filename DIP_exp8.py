@@ -25,7 +25,7 @@ def apply_averaging_filter(input_path, output_path, kernel_size):
 
 if __name__ == "__main__":
     # Example usage
-    input_path = "C:/Users//lagan//OneDrive//Desktop//2.jpg"
+    input_path = "C:/Users//lagan//OneDrive//Desktop//1.jpg"
     output_path = "C:/Users//lagan//OneDrive//Desktop//filtered_image.jpg"
     kernel_size = 5  # Adjust the kernel size as needed
     # Apply averaging filter

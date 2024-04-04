@@ -41,7 +41,7 @@ def show_image_histogram(input_path):
 
 if __name__ == "__main__":
     # Example usage
-    input_path = "C:/Users//lagan//OneDrive//Desktop//1.jpg"
+    input_path = "C:/Users//lagan//OneDrive//Desktop//7.jpg"
     # Display the image
     display_image(input_path)
     # Show image attributes

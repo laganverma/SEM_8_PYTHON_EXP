@@ -21,7 +21,7 @@ accuracy = hmm_tagger.evaluate(test_data)
 print("HMM POS Tagging Accuracy: {:.2%}".format(accuracy))
 
 # Sample text for tagging
-sample_text = "This is a sample sentence."
+sample_text = "My name is Lagan Verma"
 
 # Tokenize the sample text
 tokens = nltk.word_tokenize(sample_text)

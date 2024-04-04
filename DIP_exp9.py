@@ -57,7 +57,7 @@ def apply_morphological_operations(input_path,output_path_prefix):
 
 if __name__=="__main__":
     # Example usage
-    input_path="C:/Users/lagan/OneDrive/Desktop/4.jpeg"
+    input_path="C:/Users/lagan/OneDrive/Desktop/9.jpeg"
     output_path_prefix="C:/Users/lagan/OneDrive/Desktop/processed_image"
 
     # Apply morphological operations

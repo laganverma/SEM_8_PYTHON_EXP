@@ -25,7 +25,7 @@ def apply_filters(image):
 
 def main():
     # Read a sample image
-    input_image = cv2.imread("C:/Users/lagan/OneDrive/Desktop/4.jpeg")
+    input_image = cv2.imread("C:/Users/lagan/OneDrive/Desktop/5.jpg")
     # Add Gaussian noise to the image
     noisy_image = add_gaussian_noise(input_image)
     # Apply different filters

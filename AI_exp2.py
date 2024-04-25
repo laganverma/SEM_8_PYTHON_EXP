@@ -8,7 +8,7 @@ def generate_random_word(length, start_letter=None):
         start_letter = random.choice(string.ascii_lowercase)
 
     if length < 1:
-        raise ValueError("Length should be at least 1")`
+        raise ValueError("Length should be at least 1")
 
     word = start_letter
 
@@ -18,10 +18,11 @@ def generate_random_word(length, start_letter=None):
 
     return word
 
+# Example usage:
 try:
     word_length = int(input("Enter the desired word length: "))
     start_char = input("Enter the desired starting letter (or press Enter for a random starting letter): ")
-`
+
     random_word = generate_random_word(word_length, start_char)
     print(f"Random word: {random_word}")
 

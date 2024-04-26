@@ -1,41 +1,40 @@
-from Crypto.Util import number
+from cryptography.hazmat.primitives.asymmetric import dh
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.backends import default_backend
 
-def generate_dh_params():
-    # Generate a large prime number p and a primitive root g
-    p = number.getPrime(128)
-    g = 2  # Primitive root for simplicity
-    return p, g
+# Generate parameters for the key exchange
+parameters = dh.generate_parameters(generator=2, key_size=2048)
+private_key_a = parameters.generate_private_key()
+private_key_b = parameters.generate_private_key()
 
-def generate_private_key(p):
-    # Generate a random private key that's less than p
-    private_key = number.getRandomRange(2, p - 1)
-    return private_key
+# Get the public parts of the keys
+public_key_a = private_key_a.public_key()
+public_key_b = private_key_b.public_key()
 
-def compute_public_key(g, private_key, p):
-    # Calculate public_key = g^private_key mod p
-    public_key = pow(g, private_key, p)
-    return public_key
+# Serialize public keys to send to each other
+serialized_public_key_a = public_key_a.public_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PublicFormat.SubjectPublicKeyInfo
+)
+serialized_public_key_b = public_key_b.public_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PublicFormat.SubjectPublicKeyInfo
+)
 
-def compute_shared_secret(public_key, private_key, p):
-    # Calculate shared secret = public_key^private_key mod p
-    shared_secret = pow(public_key, private_key, p)
-    return shared_secret
+# Deserialize received public keys
+received_public_key_a = serialization.load_pem_public_key(
+    serialized_public_key_b,
+    backend=default_backend()
+)
+received_public_key_b = serialization.load_pem_public_key(
+    serialized_public_key_a,
+    backend=default_backend()
+)
 
-# Generate DH parameters (p and g)
-p, g = generate_dh_params()
-
-# Generate private keys for Alice and Bob
-private_key_a = generate_private_key(p)
-private_key_b = generate_private_key(p)
-
-# Compute public keys
-public_key_a = compute_public_key(g, private_key_a, p)
-public_key_b = compute_public_key(g, private_key_b, p)
-
-# Compute the shared secret
-shared_secret_a = compute_shared_secret(public_key_b, private_key_a, p)
-shared_secret_b = compute_shared_secret(public_key_a, private_key_b, p)
+# Perform the key exchange
+shared_key_a = private_key_a.exchange(received_public_key_a)
+shared_key_b = private_key_b.exchange(received_public_key_b)
 
 # Output the results
-print("Ianur's Shared Secret:", shared_secret_a)
-print("Alam's Shared Secret:", shared_secret_b)
+print("Lagan's Shared Secret:", shared_key_a.hex())
+print("Verma's Shared Secret:", shared_key_b.hex())
